@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org"
+th:replace="~{fragments/layout::layout(~{::body},'home')}">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<h2>New Owner</h2>
+<form th:object="${owner}" class="form-horizontal" id="add-owner-form" method="post">
+	<div class="form-group has-feedback">
+		<input th:replace="~{fragments/inputField::input('Enter First Name','firstName','text')}"/>
+		<input th:replace="~{fragments/inputField::input('Enter Last Name','lastName','text')}"/>
+		<input th:replace="~{fragments/inputField::input('Enter Address','address','text')}"/>
+		<input th:replace="~{fragments/inputField::input('Enter City','city','text')}"/>
+		<input th:replace="~{fragments/inputField::input('Enter Phone Number','telephone','text')}"/>
+	</div>
+	<div class="form-group">
+		<div class="col-sm-offset-2">
+			<button type="submit" th:with="text=${owner['new']}?
+			'Add Owner':'Update Owner'"
+			class="btn btn-primary"
+			th:text="${text}">ADD</button>
+		</div>
+	</div>
+</form>
+</body>
+</html>

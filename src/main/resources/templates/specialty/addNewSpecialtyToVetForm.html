@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org"
+th:replace="~{fragments/layout::layout(~{::body},'vets')}">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<form method="post">
+	    <label for="specialty">Select Specialty:</label>
+	    <select id="specialty" name="specialtyId" class="form-control">
+	        <option value="" disabled selected>Choose a specialty</option>
+	        <option th:each="spec : ${specList}" 
+	                th:value="${spec.id}" 
+	                th:text="${spec.name}"></option>
+	    </select>
+	    <button type="submit" class="btn btn-primary">Add Specialty</button>
+	</form>
+</body>
+</html>

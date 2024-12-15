@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org"
+th:replace="~{fragments/layout::layout(~{::body},'vet')}">
+<body>
+	<h2>Vet detail information</h2>
+	<table class="table table-striped" th:object="${vetDetails}">
+		<tr>
+			<th>Name</th>
+			<td th:text="*{firstName+' '+lastName}"></td>
+		</tr>
+		<tr>
+			<th>Specialties</th>
+			<td th:text="${#strings.listJoin(vetDetails.specialties,',')}">
+		</tr>
+	</table>
+
+	<a th:href="@{__${vetDetails.id}__/edit}" class="btn btn-primary">Edit</a>
+	<a th:href="@{__${vetDetails.id}__/specialties/new}" class="btn btn-primary">Add New Specialty</a><br>
+</body>
+</html>

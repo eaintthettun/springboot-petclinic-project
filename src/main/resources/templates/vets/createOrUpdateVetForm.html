@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org"
+th:replace="~{fragments/layout::layout(~{::body},'vets')}">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<form th:object="${vet}" class="form-horizontal" id="add-owner-form" method="post">
+	<div class="form-group has-feedback">
+		<input th:replace="~{fragments/inputField::input('Enter First Name','firstName','text')}"/>
+		<input th:replace="~{fragments/inputField::input('Enter Last Name','lastName','text')}"/>
+    	<label>Select Specialties:</label>
+		<select th:field="*{specialties}" class="form-control">
+            <option th:each="spec : ${specList}" th:value="${spec}" th:text="${spec.name}"></option>
+    	</select>
+	</div>
+   <div class="form-group">
+		<div class="col-sm-offset-2">
+			<button type="submit" th:with="text=${vet['new']}?
+			'Add Vet':'Update Vet'"
+			class="btn btn-primary"
+			th:text="${text}">ADD</button>
+		</div>
+	</div>
+</form>
+
+</body>
+</html>
